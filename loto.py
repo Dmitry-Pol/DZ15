@@ -32,8 +32,15 @@ class Card():
         print(self.name_card)
         print(self.user_card)
 
+    def __str__(self):
+        return f'была создана карта: \n {self.user_card}'
 
-class Play_game():
+    def __lt__(self, other):
+        # print(np.count_nonzero(self.user_card == -1))
+        # print(np.count_nonzero(other.user_card == -1))
+        return np.count_nonzero(self.user_card == -1) < np.count_nonzero(other.user_card == -1)
+
+class play_game():
     user_card = None
     komp_card = None
 
@@ -63,9 +70,13 @@ class Play_game():
             find_kegs_user = np.where(rand_kegs == self.user_card.user_card)
             find_kegs_comp = np.where(rand_kegs == self.komp_card.user_card)
             print('Твоя карта')
-            print(self.user_card.user_card)
+            print(self.user_card)
             print('Карта компьютера')
-            print(self.komp_card.user_card)
+            print(self.komp_card)
+            if self.komp_card < self.user_card:
+                print('Пока вы побеждаете у компьютера')
+            if self.user_card < self.komp_card:
+                print('Пока вы проигрываете компьютеру')
             if self.answer_people(find_kegs_user):
                 if len(find_kegs_user[0]) >= 1:
                     print(find_kegs_user[0][0], find_kegs_user[1][0])
@@ -83,9 +94,12 @@ class Play_game():
 
         return 0
 
+    def __str__(self):
+            return f'Вы играете в игру лото, созданную Полещенко Д.'
+
 
 if __name__ == '__main__':
-    game = Play_game()
+    game = play_game()
     while True:
         res = game.play_round()
         print(res)
@@ -95,4 +109,7 @@ if __name__ == '__main__':
         if res == 2:
             print('Вы проиграли')
             break
+
+    print(game)
+
 
