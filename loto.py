@@ -33,7 +33,7 @@ class Card():
         print(self.user_card)
 
 
-class play_game():
+class Play_game():
     user_card = None
     komp_card = None
 
@@ -85,7 +85,7 @@ class play_game():
 
 
 if __name__ == '__main__':
-    game = play_game()
+    game = Play_game()
     while True:
         res = game.play_round()
         print(res)
